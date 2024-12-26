@@ -15,7 +15,7 @@ const sendReminders = async () => {
         $gte: tomorrow,
         $lt: endOfTomorrow
       },
-      status: 'Accepted'  // Changed to match your enum
+      status: 'Accepted' // Changed to match your enum
     })
     .populate('sender receiver', 'email username')
     .lean();
@@ -78,10 +78,15 @@ Your Appointment System
   }
 };
 
-// Schedule to run every day at 5:00 AM UTC
-cron.schedule('* * * * *', sendReminders, { //set the time as needed
+// Schedule to run every day at 12:00 AM UTC
+cron.schedule('0 0 * * *', sendReminders, {
   timezone: 'UTC'
 });
+
+// // Schedule every 1 minute UTC
+// cron.schedule('* * * * *', sendReminders, {
+//   timezone: 'UTC'
+// });
 
 // Export for testing or manual triggering
 export { sendReminders };
