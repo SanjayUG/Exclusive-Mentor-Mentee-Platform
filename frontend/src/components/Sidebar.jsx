@@ -21,109 +21,99 @@ const Sidebar = ({ role }) => {
   };
 
   return (
-    <div className="w-64 text-white bg-zinc-800 h-screen p-6 flex flex-col justify-between">
+    <div className="w-64 bg-zinc-800 h-screen flex flex-col justify-between p-4">
+      {/* Logo and Title */}
       <div>
-        <img src={logo} className="absolute w-[80px] top-[12px] left-0"/>
-        <h2 className="text-[40px] font-bold text-right font1 text-purple-400 mb-[90px]">MENTOR LINK</h2>
-        <ul>
-          {/* Dashboard link */}
-          <li className="mb-[40px]">
+        <div className="flex items-center mb-10">
+          <img src={logo} alt="App Logo" className="w-12 h-12 mr-3" />
+          <h2 className="text-2xl font-bold text-purple-400">MENTOR LINK</h2>
+        </div>
+        
+        {/* Navigation Links */}
+        <ul className="space-y-6">
+          {/* Dashboard */}
+          <li>
             <Link
               to={`/${role}/dashboard`}
-              className="flex items-center text-white space-x-4 p-2 rounded-lg group"
+              className="flex items-center text-white p-2 rounded-lg hover:bg-purple-600 transition"
             >
-              <FaHome className="text-xl text-pink-500 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6" />
-              <span className="transition-all duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-500 group-hover:tracking-wider">
-                Dashboard
-              </span>
+              <FaHome className="text-xl mr-3" />
+              <span>Dashboard</span>
             </Link>
           </li>
 
-          {/* Select Mentee */}
+          {/* Select Mentee (Mentor only) */}
           {role === "mentor" && (
-            <li className="mb-[40px]">
+            <li>
               <Link
                 to="/mentor/selectMentee"
-                className="flex items-center space-x-4 p-2 rounded-lg group"
+                className="flex items-center text-white p-2 rounded-lg hover:bg-green-600 transition"
               >
-                <FaUsers className="text-xl text-pink-500 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6 group-hover:text-green-400" />
-                <span className="transition-all duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-green-400 group-hover:to-blue-500 group-hover:tracking-wider">
-                  Select Mentee
-                </span>
+                <FaUsers className="text-xl mr-3" />
+                <span>Select Mentee</span>
               </Link>
             </li>
           )}
 
-          {/* Your Mentee */}
+          {/* Your Mentee (Mentor only) */}
           {role === "mentor" && (
-            <li className="mb-[40px]">
+            <li>
               <Link
                 to="/mentor/yourMentee"
-                className="flex items-center space-x-4 p-2 rounded-lg group"
+                className="flex items-center text-white p-2 rounded-lg hover:bg-yellow-600 transition"
               >
-                <FaChalkboardTeacher className="text-xl text-pink-500 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6 group-hover:text-yellow-400" />
-                <span className="transition-all duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-yellow-400 group-hover:to-red-500 group-hover:tracking-wider">
-                  Your Mentee
-                </span>
+                <FaChalkboardTeacher className="text-xl mr-3" />
+                <span>Your Mentee</span>
               </Link>
             </li>
           )}
 
           {/* Appointments */}
-          <li className="mb-[40px]">
+          <li>
             <Link
               to={`/${role}/appointments`}
-              className="flex items-center text-white space-x-4 p-2 rounded-lg group"
+              className="flex items-center text-white p-2 rounded-lg hover:bg-blue-600 transition"
             >
-              <FaClipboardList className="text-xl text-pink-500 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6 group-hover:text-blue-400" />
-              <span className="transition-all duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-indigo-500 group-hover:tracking-wider">
-                Appointments
-              </span>
+              <FaClipboardList className="text-xl mr-3" />
+              <span>Appointments</span>
             </Link>
           </li>
 
           {/* Achievements */}
-          <li className="mb-[40px]">
+          <li>
             <Link
               to={`/${role}/achievements`}
-              className="flex items-center space-x-4 p-2 rounded-lg group"
+              className="flex items-center text-white p-2 rounded-lg hover:bg-pink-600 transition"
             >
-              <FaTrophy className="text-xl text-pink-500 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6 group-hover:text-pink-400" />
-              <span className="transition-all duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-pink-400 group-hover:to-purple-600 group-hover:tracking-wider">
-                Achievements
-              </span>
+              <FaTrophy className="text-xl mr-3" />
+              <span>Achievements</span>
             </Link>
           </li>
 
           {/* Feedback */}
-          <li className="mb-[30px]">
+          <li>
             <Link
               to={`/${role}/feedback`}
-              className="flex items-center space-x-4 p-2 rounded-lg group"
+              className="flex items-center text-white p-2 rounded-lg hover:bg-teal-600 transition"
             >
-              <FaUserAlt className="text-xl text-pink-500 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6 group-hover:text-teal-400" />
-              <span className="transition-all duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-teal-400 group-hover:to-purple-400 group-hover:tracking-wider">
-                Feedback
-              </span>
+              <FaUserAlt className="text-xl mr-3" />
+              <span>Feedback</span>
             </Link>
           </li>
         </ul>
       </div>
 
-      {/* Logout */}
+      {/* Logout Button */}
       <button
         onClick={handleLogout}
-        className="w-full h-[50px] flex items-center relative justify-center space-x-4 bg-blue-900 text-white py-2 rounded-lg group transition-transform duration-300 hover:scale-105"
+        className="flex items-center w-full p-2 text-white bg-red-600 rounded-lg hover:bg-red-700 transition"
       >
-        <img src={logout} className='w-[90px] left-0 bottom-[-10px] absolute'/>
-        <FaSignOutAlt className="text-xl absolute left-[65px] transition-transform duration-300 group-hover:scale-110 group-hover:bg-clip-text group-hover:rotate-6" />
-        <span className="transition-all duration-300 absolute left-[90px] group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-yellow-400 group-hover:to-red-500 group-hover:tracking-wider">
-          Logout
-        </span>
+        <img src={logout} alt="Logout" className="w-12 h-12 mr-3" />
+        <FaSignOutAlt className="text-xl mr-3" />
+        <span>Logout</span>
       </button>
     </div>
   );
 };
 
 export default Sidebar;
-
