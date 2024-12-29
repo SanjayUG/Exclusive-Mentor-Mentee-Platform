@@ -13,7 +13,11 @@ import './utils/reminderScheduler.js'; // Import the reminder scheduler
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors(
+  {
+    
+  }
+));
 app.use(express.json()); // To parse JSON request bodies
 
 // Serve static files from the uploads directory
