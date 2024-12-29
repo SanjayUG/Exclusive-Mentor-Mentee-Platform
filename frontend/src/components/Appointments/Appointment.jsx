@@ -73,7 +73,7 @@ const Appointment = () => {
 
   return (
     <div className="p-6 max-w-md mx-auto translate-y-6 border-2 border-yellow-500 bg-zinc-700 rounded-3xl">
-      <h2 className="text-2xl text-white font-semibold mb-4">Schedule <span className='text-pink-500'>an</span>  Appointment</h2>
+      <h2 className="text-2xl text-white font-semibold mb-4">Schedule <span className='text-pink-500'>an</span> Appointment</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block text-white">Date</label>
@@ -109,7 +109,7 @@ const Appointment = () => {
         </div>
         {userRole === 'mentor' && (
           <div>
-            <label className="block text-white ">Select Mentee</label>
+            <label className="block text-white">Select Mentee</label>
             <select
               name="mentee"
               value={formData.mentee}
@@ -126,20 +126,22 @@ const Appointment = () => {
             </select>
           </div>
         )}
-        <button
-          type="submit"
-          className="bg-purple-500 text-black hover:text-white px-4 py-2 rounded-lg hover:bg-purple-600"
-        >
-          Submit
-        </button>
+        <div className="flex justify-between items-center">
+          <button
+            type="submit"
+            className="bg-purple-500 text-black hover:text-white px-4 py-2 rounded-lg hover:bg-purple-600"
+          >
+            Submit
+          </button>
+          <button
+            onClick={handleViewAppointments}
+            className="bg-yellow-500 text-black hover:text-white px-4 py-2 rounded-lg hover:bg-yellow-600"
+          >
+            View Appointments
+          </button>
+        </div>
       </form>
       {statusMessage && <p className="mt-4 text-blue-400">{statusMessage}</p>}
-      <button
-        onClick={handleViewAppointments}
-        className="mt-6 bg-yellow-500 text-black hover:text-white px-4 py-2 rounded-lg hover:bg-yellow-600"
-      >
-        View Appointments
-      </button>
     </div>
   );
 };

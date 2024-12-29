@@ -78,13 +78,8 @@ Your Appointment System
   }
 };
 
-<<<<<<< HEAD
 // Schedule to run every day at 12 AM.
 cron.schedule('0 0 * * *', sendReminders, { //set the time as needed
-=======
-// Schedule to run every day at 12:00 AM UTC
-cron.schedule('0 0 * * *', sendReminders, {
->>>>>>> 58d3d054f7de5c78c174e2b49a09300ecf69a5d4
   timezone: 'UTC'
 });
 
