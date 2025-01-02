@@ -3,11 +3,17 @@ import react from '@vitejs/plugin-react';
 import tailwindcss from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
 
+// Vite configuration
 export default defineConfig({
-  plugins: [react(), tailwindcss(), autoprefixer()],
+  plugins: [react()],
+  css: {
+    postcss: {
+      plugins: [tailwindcss(), autoprefixer()],
+    },
+  },
   server: {
     proxy: {
-      '/api': 'http://localhost:3001',  // Proxy requests starting with '/api' to the backend
+      '/api': 'http://localhost:3001', // Proxy requests starting with '/api' to your backend
     },
   },
 });
