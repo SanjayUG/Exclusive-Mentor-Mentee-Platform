@@ -13,11 +13,7 @@ import './utils/reminderScheduler.js'; // Import the reminder scheduler
 const app = express();
 
 // Middleware
-app.use(cors(
-  {
-    
-  }
-));
+app.use(cors());
 app.use(express.json()); // To parse JSON request bodies
 
 // Serve static files from the uploads directory
@@ -68,10 +64,10 @@ app.get("/", (req, res) => {
     res.send("MentorMentee Platform API");
 });
 
-app.use('/api/auth', authRoutes);
-app.use('/api/mentorships', mentorshipRoutes);
-app.use("/api/feedback", feedbackRoutes);
-app.use("/api/achievements", achievementRoutes);
-app.use("/api/appointments", appointmentsRoutes);
+app.use('/auth', authRoutes);
+app.use('/mentorships', mentorshipRoutes);
+app.use("/feedback", feedbackRoutes);
+app.use("/achievements", achievementRoutes);
+app.use("/appointments", appointmentsRoutes);
 
 export { app };
