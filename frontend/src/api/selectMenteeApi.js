@@ -6,26 +6,25 @@ import axios from "axios";
  */
 export const fetchUnselectedMentees = async () => {
   try {
-    const token = localStorage.getItem("accessToken"); // Assuming the token is stored in localStorage after login
-    
+    const token = localStorage.getItem("accessToken");
+
     if (!token) {
       throw new Error("No authorization token found");
     }
 
-    const response = await axios.get("/api/mentorships/available", {
+    const response = await axios.get(API_URL_AVAILABLE_MENTEES, {
       headers: {
-        Authorization: `Bearer ${token}`, // Send the token as Bearer in the Authorization header
+        Authorization: `Bearer ${token}`,
       },
     });
 
-    // If the API response has no 'mentees' key or it's empty, handle it
     if (!response.data || !response.data.mentees || response.data.mentees.length === 0) {
       throw new Error("No mentees available");
     }
 
-    return response.data.mentees; // Return the mentees array from the response
+    return response.data.mentees;
   } catch (error) {
-    console.error("Error fetching mentees:", error); // Log the error to see what's wrong
+    console.error("Error fetching mentees:", error);
     throw new Error("Error fetching unselected mentees: " + error.message);
   }
 };
@@ -39,21 +38,23 @@ export const fetchUnselectedMentees = async () => {
  */
 export const addMentee = async (mentorId, menteeId) => {
   try {
-    const token = localStorage.getItem("accessToken"); // Retrieve token from localStorage
-    
+    const token = localStorage.getItem("accessToken");
+
     if (!token) {
       throw new Error("No authorization token found");
     }
 
-    const response = await axios.post("/api/mentorships/assign", {
-      mentorId,
-      menteeId,
-    }, {
-      headers: {
-        Authorization: `Bearer ${token}`, // Send the token as Bearer in the Authorization header
-      },
-    });
-    return response.data.message; // Expecting a success message or updated mentor data
+    const response = await axios.post(
+      API_URL_ASSIGN_MENTEE,
+      { mentorId, menteeId },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    return response.data.message;
   } catch (error) {
     throw new Error("Error adding mentee: " + error.message);
   }

@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 // Define the base URL of your backend API
-const API_URL = '/api/achievements'; // This will be proxied to http://localhost:3000/api/achievements
+const API_URL = `${import.meta.env.VITE_API_BASE_URL}/achievements`;
+ // This will be proxied to http://localhost:3000/api/achievements
 
 // Helper function to get the access token from local storage
 const getAuthToken = () => {

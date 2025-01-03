@@ -13,12 +13,14 @@ const getAccessToken = () => {
  */
 export const fetchSelectedMentees = async () => {
   try {
-    const token = getAccessToken();
-    const response = await axios.get(`/api/mentorships/mentees`, {
+    const token = localStorage.getItem("accessToken");
+
+    const response = await axios.get(API_URL_SELECTED_MENTEES, {
       headers: {
-        Authorization: `Bearer ${token}`, // Pass the access token
+        Authorization: `Bearer ${token}`,
       },
     });
+
     return response.data;
   } catch (error) {
     throw new Error(
@@ -34,33 +36,28 @@ export const fetchSelectedMentees = async () => {
  */
 export const removeMentee = async (menteeId) => {
   try {
-    // Get the access token from local storage
-    const token = getAccessToken();
-    
+    const token = localStorage.getItem("accessToken");
+
     if (!token) {
       throw new Error("Unauthorized: No access token found.");
     }
 
-    // Validate menteeId
     if (!menteeId || typeof menteeId !== "string" || menteeId.length !== 24) {
       throw new Error("Invalid mentee ID format.");
     }
 
-    // Make the POST request to unassign the mentee
     const response = await axios.post(
-      "/api/mentorships/unassign", // Backend endpoint for unassigning
-      { menteeId }, // Send the menteeId in the request body
+      API_URL_UNASSIGN_MENTEE,
+      { menteeId },
       {
         headers: {
-          Authorization: `Bearer ${token}`, // Include the access token in the Authorization header
+          Authorization: `Bearer ${token}`,
         },
       }
     );
 
-    // Return the success message from the response
-    return response.data.message; 
+    return response.data.message;
   } catch (error) {
-    // Handle errors and throw a descriptive error message
     const errorMessage =
       error.response?.data?.message || "An error occurred while removing the mentee.";
     throw new Error(errorMessage);
