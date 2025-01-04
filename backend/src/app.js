@@ -12,8 +12,15 @@ import './utils/reminderScheduler.js'; // Import the reminder scheduler
 
 const app = express();
 
+// CORS Configuration
+const corsOptions = {
+  origin: "https://mentorlink-nine.vercel.app", // Frontend domain
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true, // Allow cookies or authorization headers
+};
+app.use(cors(corsOptions));
+
 // Middleware
-app.use(cors());
 app.use(express.json()); // To parse JSON request bodies
 
 // Serve static files from the uploads directory
@@ -61,7 +68,7 @@ app.get('/uploads/:filename', (req, res) => {
 
 // Routes
 app.get("/", (req, res) => {
-    res.send("MentorMentee Platform API");
+  res.send("MentorMentee Platform API");
 });
 
 app.use('/auth', authRoutes);
