@@ -71,10 +71,10 @@ app.get("/", (req, res) => {
   res.send("MentorMentee Platform API");
 });
 
-app.use('/auth', authRoutes);
-app.use('/mentorships', mentorshipRoutes);
-app.use("/feedback", feedbackRoutes);
-app.use("/achievements", achievementRoutes);
-app.use("/appointments", appointmentsRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/mentorships", mentorshipRoutes);
+app.use("/api/feedback", feedbackRoutes);
+app.use("/api/achievements", achievementRoutes);
+app.use("/api/appointments", appointmentsRoutes);
 
 export { app };

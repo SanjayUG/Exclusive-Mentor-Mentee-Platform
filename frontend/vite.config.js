@@ -11,4 +11,14 @@ export default defineConfig({
       plugins: [tailwindcss(), autoprefixer()],
     },
   },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://mentorlink-backned.onrender.com', // Backend URL without /api
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api/, ''), // Strip /api when forwarding
+      },
+    },
+  },
 });
