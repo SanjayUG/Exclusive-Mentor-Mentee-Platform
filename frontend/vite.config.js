@@ -4,7 +4,6 @@ import tailwindcss from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
 
 export default defineConfig({
-  base: "/",
   plugins: [react()],
   css: {
     postcss: {
@@ -14,10 +13,9 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://mentorlink-backned.onrender.com', // Backend URL without /api
+        target: 'https://mentorlink-backned.onrender.com', 
         changeOrigin: true,
         secure: false,
-        rewrite: (path) => path.replace(/^\/api/, ''), // Strip /api when forwarding
       },
     },
   },
