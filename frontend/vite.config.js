@@ -13,9 +13,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://mentorlink-backend.onrender.com', // Backend URL
-        changeOrigin: true,
-        secure: true, // Ensure HTTPS communication
+        target: 'https://mentorlink-backned.onrender.com/api',
       },
     },
   },
