@@ -15,7 +15,7 @@ import SelectMentee from "./pages/mentor/SelectMentee";
 import MentorAppointment from "./pages/mentor/MentorAppointment";
 import MenteesAchievement from "./pages/mentor/MenteesAchievement";
 import ViewFeedback from "./pages/mentor/ViewFeedback";
-import ViewAppointment from "./components/Appointments/viewAppointment";
+import ViewAppointment from "./components/Appointments/ViewAppointment";
 import ViewAchievements from "./components/Achievements/ViewAchievements";
 
 const App = () => {
