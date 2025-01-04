@@ -13,10 +13,9 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://mentorlink-backned.onrender.com', 
+        target: 'https://mentorlink-backend.onrender.com', // Backend URL
         changeOrigin: true,
-        secure: true, // Updated to true for production-grade security
-        rewrite: (path) => path.replace(/^\/api/, ''), // Rewrites the API prefix if necessary
+        secure: true, // Ensure HTTPS communication
       },
     },
   },
