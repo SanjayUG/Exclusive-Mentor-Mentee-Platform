@@ -5,7 +5,7 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL; // Use .env variables fo
 // Function to register a user
 export const registerUser = async (userData) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}/api/auth/register`, userData);
+    const response = await axios.post(`${API_BASE_URL}/auth/register`, userData);
     return response.data; // Return success message or user data
   } catch (error) {
     throw error.response?.data?.message || 'Registration failed';
