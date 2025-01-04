@@ -15,7 +15,8 @@ export default defineConfig({
       '/api': {
         target: 'https://mentorlink-backned.onrender.com', 
         changeOrigin: true,
-        secure: false,
+        secure: true, // Updated to true for production-grade security
+        rewrite: (path) => path.replace(/^\/api/, ''), // Rewrites the API prefix if necessary
       },
     },
   },
