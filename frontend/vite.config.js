@@ -13,7 +13,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://mentorlink-backned.onrender.com/api',
+        target: 'https://mentorlink-backned.onrender.com',
       },
     },
   },
