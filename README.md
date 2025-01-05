@@ -7,10 +7,13 @@ You can view the live demo of the platform at [Exclusive Mentor-Mentee Platform]
 ## Key Features
 ### -Role-Based Authentication:
 <p>The platform supports role-based login and access control. Mentors and mentees can register, log in, and access their personalized dashboards based on their roles.</p>
+
 ### -Appointment Scheduling:
 <p>Mentors and mentees can schedule, manage, and confirm appointments for mentorship sessions. The system supports calendar-based scheduling and time slot management.</p>
+
 ### -Feedback System:
 <p>After each mentorship session, mentees can provide feedback on their experience, which is valuable for continuous improvement.</p>
+
 ### -Achievements Tracking:
 <p>Mentors and mentees can track and celebrate achievements throughout their interaction. The achievements system helps visualize progress and milestones.</p>
 
