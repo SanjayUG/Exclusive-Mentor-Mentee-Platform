@@ -13,12 +13,24 @@ import './utils/reminderScheduler.js'; // Import the reminder scheduler
 const app = express();
 
 // CORS Configuration
-const corsOptions = {
-  origin: "https://mentorlink-nine.vercel.app", // Frontend domain
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true, // Allow cookies or authorization headers
-};
-app.use(cors(corsOptions));
+const allowedOrigins = [
+  'https://mentorlink-nine.vercel.app', // Deployed frontend
+  'http://localhost:5173',             // Local frontend for development
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or Postman)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error(`CORS policy does not allow access from origin ${origin}`));
+    }
+  },
+  credentials: true, // Include credentials if needed
+}));
 
 // Middleware
 app.use(express.json()); // To parse JSON request bodies

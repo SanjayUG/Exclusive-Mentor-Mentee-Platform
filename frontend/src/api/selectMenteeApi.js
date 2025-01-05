@@ -12,7 +12,7 @@ export const fetchUnselectedMentees = async () => {
       throw new Error("No authorization token found");
     }
 
-    const response = await axios.get(API_URL_AVAILABLE_MENTEES, {
+    const response = await axios.get("/api/mentorships/available", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -44,10 +44,8 @@ export const addMentee = async (mentorId, menteeId) => {
       throw new Error("No authorization token found");
     }
 
-    const response = await axios.post(
-      API_URL_ASSIGN_MENTEE,
-      { mentorId, menteeId },
-      {
+    const response = await axios.post("/api/mentorships/assign",
+      { mentorId, menteeId }, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

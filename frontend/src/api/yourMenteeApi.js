@@ -15,7 +15,7 @@ export const fetchSelectedMentees = async () => {
   try {
     const token = localStorage.getItem("accessToken");
 
-    const response = await axios.get(API_URL_SELECTED_MENTEES, {
+    const response = await axios.get("/api/mentorships/mentees", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -46,10 +46,8 @@ export const removeMentee = async (menteeId) => {
       throw new Error("Invalid mentee ID format.");
     }
 
-    const response = await axios.post(
-      API_URL_UNASSIGN_MENTEE,
-      { menteeId },
-      {
+    const response = await axios.post("/api/mentorships/unassign",
+      { menteeId }, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

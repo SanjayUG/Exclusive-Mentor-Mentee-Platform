@@ -11,10 +11,8 @@ export default defineConfig({
     },
   },
   server: {
-    proxy: {
-      '/api': {
-        target: 'https://mentorlink-backned.onrender.com',
-      },
-    },
+    // proxy: {
+    //   '/api': 'http://localhost:3001',
+    // },
   },
 });
