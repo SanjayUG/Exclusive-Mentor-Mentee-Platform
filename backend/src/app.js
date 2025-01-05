@@ -14,7 +14,7 @@ const app = express();
 
 // CORS Configuration
 const allowedOrigins = [
-  'https://mentorlink-git-main-sanjays-projects-01e06e7b.vercel.app/', // Deployed frontend
+  'https://mentorlink-three.vercel.app/', // Deployed frontend
   'http://localhost:5173',             // Local frontend for development
 ];
 
