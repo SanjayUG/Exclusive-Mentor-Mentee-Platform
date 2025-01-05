@@ -1,6 +1,9 @@
 # Exclusive-Mentor-Mentee-Platform
 <p>This project is a comprehensive platform that facilitates mentor-mentee interactions through various features including role-based authentication, appointment scheduling, feedback management, and achievement tracking. The platform is built using a robust backend API and a user-friendly frontend, offering different functionalities for mentors and mentees.</p>
 
+## Live Demo
+You can view the live demo of the platform at [Exclusive Mentor-Mentee Platform](https://mentorlink-three.vercel.app/).
+
 ## Key Features
 ### -Role-Based Authentication:
 <p>The platform supports role-based login and access control. Mentors and mentees can register, log in, and access their personalized dashboards based on their roles.</p>
