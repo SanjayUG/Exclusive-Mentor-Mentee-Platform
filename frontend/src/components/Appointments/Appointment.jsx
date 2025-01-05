@@ -17,7 +17,7 @@ const Appointment = () => {
 
   const userRole = localStorage.getItem('role');
   const accessToken = localStorage.getItem('accessToken');
-  
+
   const parseJwt = (token) => {
     try {
       const base64Url = token.split('.')[1];
@@ -36,10 +36,15 @@ const Appointment = () => {
       axios.get(`/api/appointments/assigned-mentees`, {
         headers: { Authorization: `Bearer ${accessToken}` },
       })
-        .then((response) => setAssignedMentees(response.data))
-        .catch((error) => console.error('Error fetching mentees:', error));
+        .then((response) => {
+          const mentees = Array.isArray(response.data) ? response.data : [];
+          setAssignedMentees(mentees);
+        })
+        .catch((error) => {
+          console.error('Error fetching mentees:', error);
+          setAssignedMentees([]); // Fallback to an empty array on error
+        });
     } else if (userRole === 'mentee' && userId) {
-      // Fetch assigned mentor for mentee
       axios.get(`/api/appointments/mentor`, {
         headers: { Authorization: `Bearer ${accessToken}` },
       })
@@ -47,7 +52,6 @@ const Appointment = () => {
         .catch((error) => console.error('Error fetching mentor:', error));
     }
   }, [userRole, userId, accessToken]);
-  
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

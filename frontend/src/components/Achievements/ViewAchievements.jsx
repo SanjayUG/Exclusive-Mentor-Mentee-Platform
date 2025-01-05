@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { viewSelfAchievements, viewMenteesAchievements, downloadFile } from "../../api/achievementApi"; // Import the correct API functions
+import { viewSelfAchievements, viewMenteesAchievements, downloadFile } from "../../api/achievementApi";
 
 const ViewAchievements = () => {
-  const [achievements, setAchievements] = useState([]);
+  const [achievements, setAchievements] = useState([]); // Ensure achievements is always an array
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -21,7 +21,9 @@ const ViewAchievements = () => {
         } else {
           data = await viewMenteesAchievements(); // Fetch assigned mentees' achievements for mentors
         }
-        setAchievements(data);
+
+        // Ensure data is an array
+        setAchievements(Array.isArray(data) ? data : []);
       } catch (err) {
         setError(err.message || "Failed to fetch achievements");
       } finally {
@@ -46,7 +48,7 @@ const ViewAchievements = () => {
       const url = window.URL.createObjectURL(fileBlob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `file-${fileId}`; // You can customize the filename
+      a.download = `file-${fileId}`; // Customize the filename
       document.body.appendChild(a);
       a.click();
       a.remove();
@@ -109,5 +111,4 @@ const ViewAchievements = () => {
   );
 };
 
-export default ViewAchievements; 
-
+export default ViewAchievements;

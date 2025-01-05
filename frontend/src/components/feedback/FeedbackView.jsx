@@ -9,8 +9,9 @@ const FeedbackView = () => {
     const fetchData = async () => {
       try {
         const data = await fetchFeedbacksForMentor();
-        console.log(data)
-        setFeedbacks(data);
+        console.log(data);
+        // Ensure data is an array before setting it to feedbacks
+        setFeedbacks(Array.isArray(data) ? data : []);
       } catch (err) {
         console.error("Error fetching feedbacks:", err);
         setError(err.message);
@@ -19,7 +20,6 @@ const FeedbackView = () => {
 
     fetchData();
   }, []);
-
 
   return (
     <div className="bg-zinc-900 shadow-lg rounded-3xl overflow-hidden">
@@ -53,5 +53,4 @@ const FeedbackView = () => {
   );
 };
 
-export default FeedbackView; 
- 
+export default FeedbackView;
