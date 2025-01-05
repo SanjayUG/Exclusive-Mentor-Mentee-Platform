@@ -83,7 +83,7 @@ app.get("/", (req, res) => {
   res.send("MentorMentee Platform API");
 });
 
-app.use("/api/auth", authRoutes);
+app.use("/auth", authRoutes);
 app.use("/api/mentorships", mentorshipRoutes);
 app.use("/api/feedback", feedbackRoutes);
 app.use("/api/achievements", achievementRoutes);
