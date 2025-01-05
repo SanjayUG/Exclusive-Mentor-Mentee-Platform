@@ -33,7 +33,7 @@ const Appointment = () => {
 
   useEffect(() => {
     if (userRole === 'mentor' && userId) {
-      axios.get(`/api/appointments/assigned-mentees`, {
+      axios.get(`${import.meta.env.VITE_API_BASE_URL}/appointments/assigned-mentees`, {
         headers: { Authorization: `Bearer ${accessToken}` },
       })
         .then((response) => {
@@ -45,7 +45,7 @@ const Appointment = () => {
           setAssignedMentees([]); // Fallback to an empty array on error
         });
     } else if (userRole === 'mentee' && userId) {
-      axios.get(`/api/appointments/mentor`, {
+      axios.get(`${import.meta.env.VITE_API_BASE_URL}/appointments/mentor`, {
         headers: { Authorization: `Bearer ${accessToken}` },
       })
         .then((response) => setFormData((prev) => ({ ...prev, mentor: response.data._id })))

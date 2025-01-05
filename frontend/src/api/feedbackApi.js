@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // API base URL (consider using environment variables for deployment)
-const BASE_URL = '/api/feedback';
+const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/feedback`;
 
 
 // Retrieve token from localStorage

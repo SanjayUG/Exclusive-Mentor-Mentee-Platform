@@ -12,7 +12,7 @@ export const fetchUnselectedMentees = async () => {
       throw new Error("No authorization token found");
     }
 
-    const response = await axios.get("/api/mentorships/available", {
+    const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/mentorships/available`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -44,7 +44,7 @@ export const addMentee = async (mentorId, menteeId) => {
       throw new Error("No authorization token found");
     }
 
-    const response = await axios.post("/api/mentorships/assign",
+    const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/mentorships/assign`,
       { mentorId, menteeId }, {
         headers: {
           Authorization: `Bearer ${token}`,
