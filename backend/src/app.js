@@ -84,9 +84,9 @@ app.get("/", (req, res) => {
 });
 
 app.use("/auth", authRoutes);
-app.use("/api/mentorships", mentorshipRoutes);
-app.use("/api/feedback", feedbackRoutes);
-app.use("/api/achievements", achievementRoutes);
-app.use("/api/appointments", appointmentsRoutes);
+app.use("/mentorships", mentorshipRoutes);
+app.use("/feedback", feedbackRoutes);
+app.use("/achievements", achievementRoutes);
+app.use("/appointments", appointmentsRoutes);
 
 export { app };

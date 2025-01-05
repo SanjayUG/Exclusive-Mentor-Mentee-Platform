@@ -32,7 +32,7 @@ const Register = () => {
     setMessage("");
 
     try {
-      const response = await axios.post("/api/auth/register", formData);
+      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/auth/register`, formData);
       setMessage(response.data.message);
 
       // Redirect to login page if registration is successful
