@@ -62,24 +62,7 @@ This is the backend implementation of an exclusive Mentor-Mentee platform, built
    npm install
    ```
 
-3. Configure environment variables in `.env`:
-   ```plaintext
-   PORT=3001
-   MONGODB_URI="mongodb_uri"
-   ACCESS_TOKEN_SECRET="your_access_token"
-   ACCESS_TOKEN_EXPIRY="1d"
-   REFRESH_TOKEN_SECRET="your_refresh_token"
-   REFRESH_TOKEN_EXPIRY="7d"
-
-   SMTP_HOST="smtp.gmail.com"
-   SMTP_PORT=587
-   SMTP_SECURE=false  # only set true if using port 465
-
-   EMAIL_USER="your_app_email"
-   EMAIL_PASS="your_app_password"
-   ```
-
-4. Start the development server:
+3. Start the development server:
    ```bash
    npm run dev
    ```
@@ -100,4 +83,4 @@ This is the backend implementation of an exclusive Mentor-Mentee platform, built
 This project is licensed under the MIT License.
 ```
 
-This structure and formatting make the content visually more appealing and easier to follow for your audience.
+
