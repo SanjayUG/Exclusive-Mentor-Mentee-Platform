@@ -2,6 +2,28 @@
 
 This document provides a detailed guide to set up the frontend of the Mentor-Mentee platform using **React**, **Vite**, and **Tailwind CSS**.
 
+---
+
+## Installation Steps
+
+### Step 1: Clone the Repository
+```bash
+git clone <repository-url>
+cd frontend
+```
+
+### Step 2: Install Dependencies
+```bash
+npm install
+```
+
+### Step 3: Start the Development Server
+```bash
+npm run dev
+```
+
+---
+
 ## Features
 - **React** for building UI components
 - **Vite** for fast development and build
@@ -31,26 +53,6 @@ VITE_API_BASE_URL=https://mentorlink-backend.onrender.com
 
 - Node.js
 - npm or Yarn package manager
-
----
-
-## Installation Steps
-
-### Step 1: Clone the Repository
-```bash
-git clone <repository-url>
-cd frontend
-```
-
-### Step 2: Install Dependencies
-```bash
-npm install
-```
-
-### Step 3: Start the Development Server
-```bash
-npm run dev
-```
 
 ---
 
