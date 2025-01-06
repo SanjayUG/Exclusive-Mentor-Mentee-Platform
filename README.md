@@ -63,14 +63,6 @@ You can view the live demo of the platform at [Exclusive Mentor-Mentee Platform]
 - Visualize progress and celebrate milestones in the mentorship journey.
 - Helps mentors and mentees track achievements and stay motivated.
 
-### Scalability and Customization
-- Easily adaptable to suit organizations of different sizes and structures.
-- Modular design allows for adding new features and integrations seamlessly.
-
-### Comprehensive Analytics
-- Gain insights into mentorship patterns and outcomes.
-- Measure the impact of mentorship programs with data-driven reports.
-
 ### Seamless Communication Tools
 - Built-in chat and notification system for real-time communication between mentors and mentees.
 - Email reminders for scheduled sessions to ensure punctuality and engagement.
