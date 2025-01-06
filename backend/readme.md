@@ -1,93 +1,37 @@
-// Step 1: Initialize the project
-// Command: npm init -y
+# Project Setup for Mentor-Mentee Platform Backend
 
-// Step 2: Directory Structure
-// project-root/
-// ├── controllers/
-// ├── models/
-// ├── routes/
-// ├── utils/
-// ├── config/
-// ├── app.js
-// ├── index.js
-// ├── indexDB.js
-// ├── .env
-// ├── package.json
-// └── README.md
+## Step 1: Initialize the Project
+Run the following command to initialize the project:
+```bash
+npm init -y
+```
 
-// Step 3: Install Required Packages
-// Command: npm install dotenv nodemon express mongoose cors jsonwebtoken bcrypt bcryptjs body-parser multer node-cron nodemailer
+## Step 2: Install Required Packages
+Install the necessary dependencies using:
+```bash
+npm install dotenv nodemon express mongoose cors jsonwebtoken bcrypt bcryptjs body-parser multer node-cron nodemailer
+```
 
-// Step 4: Create Core Files
+## Environment Variables
+Create a `.env` file in the root directory and configure it as follows:
+```plaintext
+PORT=3001
+MONGODB_URI="mongodb_uri"
+ACCESS_TOKEN_SECRET="your_access_token"
+ACCESS_TOKEN_EXPIRY="1d"
+REFRESH_TOKEN_SECRET="your_refresh_token"
+REFRESH_TOKEN_EXPIRY="7d"
 
-// app.js
-const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const dotenv = require('dotenv');
-const routes = require('./routes'); // Assuming routes are in routes/index.js
+SMTP_HOST="smtp.gmail.com"
+SMTP_PORT=587
+SMTP_SECURE=false  # only set true if using port 465
 
-dotenv.config();
+EMAIL_USER="your_app_email"
+EMAIL_PASS="your_app_password"
+```
 
-const app = express();
-
-// Middleware
-app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// Routes
-app.use('/api', routes);
-
-// Error handling middleware
-app.use((err, req, res, next) => {
-    res.status(err.status || 500).json({ error: err.message });
-});
-
-module.exports = app;
-
-// index.js
-const app = require('./app');
-const connectDB = require('./indexDB');
-
-const PORT = process.env.PORT || 5000;
-
-// Connect to DB and Start Server
-connectDB()
-    .then(() => {
-        app.listen(PORT, () => {
-            console.log(`Server is running on http://localhost:${PORT}`);
-        });
-    })
-    .catch((err) => {
-        console.error('Failed to connect to the database', err);
-    });
-
-// indexDB.js
-const mongoose = require('mongoose');
-
-const connectDB = async () => {
-    try {
-        await mongoose.connect(process.env.MONGO_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
-        console.log('MongoDB connected successfully');
-    } catch (error) {
-        console.error('Error connecting to MongoDB:', error);
-        throw error;
-    }
-};
-
-module.exports = connectDB;
-
-// .env
-// PORT=5000
-// MONGO_URI=<Your MongoDB Atlas URI>
-// JWT_SECRET=<Your JWT Secret>
-// NODE_ENV=development
-
-// README.md
+## README.md
+```markdown
 # Mentor-Mentee Platform Backend
 
 This is the backend implementation of an exclusive Mentor-Mentee platform, built with Node.js and MongoDB Atlas.
@@ -119,11 +63,20 @@ This is the backend implementation of an exclusive Mentor-Mentee platform, built
    ```
 
 3. Configure environment variables in `.env`:
-   ```bash
-   PORT=5000
-   MONGO_URI=<Your MongoDB Atlas URI>
-   JWT_SECRET=<Your JWT Secret>
-   NODE_ENV=development
+   ```plaintext
+   PORT=3001
+   MONGODB_URI="mongodb_uri"
+   ACCESS_TOKEN_SECRET="your_access_token"
+   ACCESS_TOKEN_EXPIRY="1d"
+   REFRESH_TOKEN_SECRET="your_refresh_token"
+   REFRESH_TOKEN_EXPIRY="7d"
+
+   SMTP_HOST="smtp.gmail.com"
+   SMTP_PORT=587
+   SMTP_SECURE=false  # only set true if using port 465
+
+   EMAIL_USER="your_app_email"
+   EMAIL_PASS="your_app_password"
    ```
 
 4. Start the development server:
@@ -143,21 +96,8 @@ This is the backend implementation of an exclusive Mentor-Mentee platform, built
 - **Multer**: For handling file uploads
 - **bcrypt**: For password hashing
 
-## Directory Structure
-```
-project-root/
-├── controllers/         # Business logic
-├── models/              # Mongoose schemas and models
-├── routes/              # API routes
-├── utils/               # Utility functions
-├── config/              # Configuration files
-├── app.js               # Express app
-├── index.js             # Entry point
-├── indexDB.js           # Database connection
-├── .env                 # Environment variables
-├── package.json         # Project metadata and scripts
-└── README.md            # Project documentation
-```
-
 ## License
 This project is licensed under the MIT License.
+```
+
+This structure and formatting make the content visually more appealing and easier to follow for your audience.
