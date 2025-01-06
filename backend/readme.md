@@ -31,7 +31,6 @@ EMAIL_PASS="your_app_password"
 ```
 
 ## README.md
-```markdown
 # Mentor-Mentee Platform Backend
 
 This is the backend implementation of an exclusive Mentor-Mentee platform, built with Node.js and MongoDB Atlas.
@@ -81,6 +80,3 @@ This is the backend implementation of an exclusive Mentor-Mentee platform, built
 
 ## License
 This project is licensed under the MIT License.
-```
-
-
