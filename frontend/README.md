@@ -29,7 +29,7 @@ VITE_API_BASE_URL=https://mentorlink-backend.onrender.com
 
 ## Prerequisites
 
-- Node.js (v16 or higher)
+- Node.js
 - npm or Yarn package manager
 
 ---
@@ -79,24 +79,25 @@ npm run preview
 ## Key Dependencies
 
 ### Core Dependencies
-- **react**: ^18.3.1
-- **react-dom**: ^18.3.1
-- **@reduxjs/toolkit**: For state management
-- **react-redux**: For React bindings with Redux
-- **react-router-dom**: For routing
-- **axios**: For API requests
-- **framer-motion**: For animations
-- **react-toastify**: For notifications
-- **jwt-decode**: For decoding JWT tokens
+- React
+- React DOM
+- Redux Toolkit
+- React Redux
+- React Router DOM
+- Axios
+- Framer Motion
+- React Toastify
+- JWT Decode
 
 ### Dev Dependencies
-- **vite**: ^5.4.11
-- **@vitejs/plugin-react**: Vite plugin for React
-- **eslint**: For linting
-- **eslint-plugin-react**: React linting rules
-- **tailwindcss**: Utility-first CSS framework
-- **postcss**: For CSS processing
-- **autoprefixer**: For adding vendor prefixes
+- Vite
+- @vitejs/plugin-react
+- ESLint
+- eslint-plugin-react
+- eslint-plugin-react-hooks
+- Tailwind CSS
+- PostCSS
+- Autoprefixer
 
 ---
 
