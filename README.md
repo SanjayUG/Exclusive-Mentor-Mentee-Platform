@@ -93,3 +93,6 @@ You can view the live demo of the platform at [Exclusive Mentor-Mentee Platform]
 
 ### API
 - **RESTful API**: Facilitates seamless communication between the frontend and backend systems.
+
+## License
+This project is licensed under the MIT License.
