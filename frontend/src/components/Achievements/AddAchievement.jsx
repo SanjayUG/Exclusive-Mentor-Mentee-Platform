@@ -1,3 +1,4 @@
+// AddAchievement.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { uploadAchievement } from "../../api/achievementApi";
@@ -31,7 +32,7 @@ const AddAchievement = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-900">
+    <div className="flex justify-center items-start h-screen bg-gray-900 pt-12"> {/* Added pt-12 to add space from the top */}
       <div className="p-6 rounded-3xl border-2 border-yellow-500 bg-zinc-800 w-[600px]">
         <h1 className="text-2xl font-bold text-center mb-4 text-white">Add Achievement</h1>
         <div className="max-w-lg mx-auto">

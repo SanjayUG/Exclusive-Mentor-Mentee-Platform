@@ -14,6 +14,7 @@ const SelectMentee = () => {
       try {
         const unselectedMentees = await fetchUnselectedMentees();
         setMentees(unselectedMentees);
+        setFilteredMentees(unselectedMentees); // Show all mentees by default
         setLoading(false);
       } catch (err) {
         setError("Failed to fetch unselected mentees");
@@ -52,7 +53,7 @@ const SelectMentee = () => {
   return (
     <div className="flex">
       <Sidebar role="mentor" />
-      <div className="flex-grow p-6 text-white bg-black border-l-4 border-purple-700 rounded-l-[50px]">
+      <div className="flex-grow p-6 text-white bg-black border-l-4 border-purple-700 rounded-l-[50px] h-screen overflow-y-auto">
         <h1 className="text-[30px] font2 translate-y-[20px] font-bold mb-4">Select Mentees</h1>
 
         {/* Search bar */}
@@ -72,19 +73,17 @@ const SelectMentee = () => {
           <div>Loading mentees...</div>
         ) : error ? (
           <div>{error}</div>
-        ) : searchTerm && filteredMentees.length === 0 ? (
+        ) : filteredMentees.length === 0 ? (
           <div>No mentees found.</div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {(searchTerm ? filteredMentees : []).map((mentee) => (
+            {filteredMentees.map((mentee) => (
               <div
                 key={mentee._id}
-                className="bg-zinc-800 p-4 rounded-lg shadow-md flex justify-between items-center"
+                className="bg-zinc-800 p-6 rounded-lg shadow-md flex flex-col items-center text-center"
               >
-                <div>
-                  <h2 className="text-lg font-semibold">{mentee.username}</h2>
-                  <p className="text-blue-500">{mentee.email}</p>
-                </div>
+                <h2 className="text-lg font-semibold mb-2">{mentee.username}</h2>
+                <p className="text-blue-500 mb-4">{mentee.email}</p>
                 <button
                   className="bg-yellow-500 text-black px-4 py-2 rounded-lg"
                   onClick={() => handleSelectMentee(mentee._id)}

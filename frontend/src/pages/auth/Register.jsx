@@ -12,6 +12,7 @@ const Register = () => {
     username: "",
     email: "",
     password: "",
+    confirmPassword: "", // New state for confirm password
     role: "mentee", // Default to mentee
   });
   const [message, setMessage] = useState("");
@@ -30,6 +31,12 @@ const Register = () => {
     e.preventDefault();
     setIsLoading(true);
     setMessage("");
+
+    if (formData.password !== formData.confirmPassword) {
+      setMessage("Passwords do not match");
+      setIsLoading(false);
+      return;
+    }
 
     try {
       const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/auth/register`, formData);
@@ -141,6 +148,26 @@ const Register = () => {
             />
           </div>
 
+          {/* Confirm Password Field */}
+          <div className="mb-4">
+            <label
+              htmlFor="confirmPassword"
+              className="block text-sm font-medium text-white"
+            >
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              className="w-full px-3 py-2 border bg-zinc-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff01ea]"
+              placeholder="Confirm your password"
+              required
+            />
+          </div>
+
           {/* Role Selection */}
           <div className="mb-4">
             <label
@@ -190,7 +217,7 @@ const Register = () => {
         </div>
 
         {/* Link to Login Page */}
-        <p className="mt-6 z-10 mb-[20px] text-center">
+        <p className="mt-2 z-10 mb-[20px] text-center">
           Already have an account?{" "}
           <Link
             to="/login"
