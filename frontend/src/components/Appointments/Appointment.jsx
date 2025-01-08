@@ -1,27 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { submitAppointment } from '../../api/appointmentApi';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { submitAppointment } from "../../api/appointmentApi";
+import axios from "axios";
 
 const Appointment = () => {
   const [formData, setFormData] = useState({
-    date: '',
-    time: '',
-    reason: '',
-    mentee: '',
-    mentor: '',
+    date: "",
+    time: "",
+    reason: "",
+    mentee: "",
+    mentor: "",
   });
   const [assignedMentees, setAssignedMentees] = useState([]);
-  const [statusMessage, setStatusMessage] = useState('');
+  const [statusMessage, setStatusMessage] = useState("");
   const navigate = useNavigate();
 
-  const userRole = localStorage.getItem('role');
-  const accessToken = localStorage.getItem('accessToken');
+  const userRole = localStorage.getItem("role");
+  const accessToken = localStorage.getItem("accessToken");
 
   const parseJwt = (token) => {
     try {
-      const base64Url = token.split('.')[1];
-      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const base64Url = token.split(".")[1];
+      const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
       const decoded = JSON.parse(atob(base64));
       return decoded;
     } catch (e) {
@@ -32,24 +32,31 @@ const Appointment = () => {
   const userId = accessToken ? parseJwt(accessToken)?.id : null;
 
   useEffect(() => {
-    if (userRole === 'mentor' && userId) {
-      axios.get(`${import.meta.env.VITE_API_BASE_URL}/appointments/assigned-mentees`, {
-        headers: { Authorization: `Bearer ${accessToken}` },
-      })
+    if (userRole === "mentor" && userId) {
+      axios
+        .get(
+          `${import.meta.env.VITE_API_BASE_URL}/appointments/assigned-mentees`,
+          {
+            headers: { Authorization: `Bearer ${accessToken}` },
+          }
+        )
         .then((response) => {
           const mentees = Array.isArray(response.data) ? response.data : [];
           setAssignedMentees(mentees);
         })
         .catch((error) => {
-          console.error('Error fetching mentees:', error);
+          console.error("Error fetching mentees:", error);
           setAssignedMentees([]);
         });
-    } else if (userRole === 'mentee' && userId) {
-      axios.get(`${import.meta.env.VITE_API_BASE_URL}/appointments/mentor`, {
-        headers: { Authorization: `Bearer ${accessToken}` },
-      })
-        .then((response) => setFormData((prev) => ({ ...prev, mentor: response.data._id })))
-        .catch((error) => console.error('Error fetching mentor:', error));
+    } else if (userRole === "mentee" && userId) {
+      axios
+        .get(`${import.meta.env.VITE_API_BASE_URL}/appointments/mentor`, {
+          headers: { Authorization: `Bearer ${accessToken}` },
+        })
+        .then((response) =>
+          setFormData((prev) => ({ ...prev, mentor: response.data._id }))
+        )
+        .catch((error) => console.error("Error fetching mentor:", error));
     }
   }, [userRole, userId, accessToken]);
 
@@ -60,26 +67,30 @@ const Appointment = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (userRole === 'mentor') {
+      if (userRole === "mentor") {
         if (!formData.mentee) {
-          setStatusMessage('Please select a mentee.');
+          setStatusMessage("Please select a mentee.");
           return;
         }
         // Handle "Select All Mentees" logic
-        if (formData.mentee === 'all') {
+        if (formData.mentee === "all") {
           const appointments = assignedMentees.map((mentee) => ({
             ...formData,
             mentee: mentee._id,
           }));
-          await Promise.all(appointments.map((appointment) => submitAppointment(appointment)));
-          setStatusMessage('Appointments successfully submitted for all mentees!');
+          await Promise.all(
+            appointments.map((appointment) => submitAppointment(appointment))
+          );
+          setStatusMessage(
+            "Appointments successfully submitted for all mentees!"
+          );
         } else {
           await submitAppointment(formData);
-          setStatusMessage('Appointment successfully submitted!');
+          setStatusMessage("Appointment successfully submitted!");
         }
       } else {
         await submitAppointment(formData);
-        setStatusMessage('Appointment successfully submitted!');
+        setStatusMessage("Appointment successfully submitted!");
       }
     } catch (error) {
       setStatusMessage(error.message);
@@ -87,12 +98,18 @@ const Appointment = () => {
   };
 
   const handleViewAppointments = () => {
-    navigate(userRole === 'mentor' ? '/mentor/view-appointments' : '/mentee/view-appointments');
+    navigate(
+      userRole === "mentor"
+        ? "/mentor/view-appointments"
+        : "/mentee/view-appointments"
+    );
   };
 
   return (
     <div className="p-6 max-w-md mx-auto translate-y-6 border-2 border-yellow-500 bg-zinc-700 rounded-3xl">
-      <h2 className="text-2xl text-white font-semibold mb-4">Schedule <span className="text-pink-500">an</span> Appointment</h2>
+      <h2 className="text-2xl text-white font-semibold mb-4">
+        Schedule <span className="text-pink-500">an</span> Appointment
+      </h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block text-white">Date</label>
@@ -126,7 +143,7 @@ const Appointment = () => {
             required
           />
         </div>
-        {userRole === 'mentor' && (
+        {userRole === "mentor" && (
           <div>
             <label className="block text-white">Select Mentee</label>
             <select
@@ -140,7 +157,7 @@ const Appointment = () => {
               <option value="all">All Mentees</option>
               {assignedMentees.map((mentee) => (
                 <option key={mentee._id} value={mentee._id}>
-                  {mentee.username} ({mentee.email})
+                  {mentee.username}
                 </option>
               ))}
             </select>

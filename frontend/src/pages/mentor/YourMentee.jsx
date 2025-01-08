@@ -57,7 +57,6 @@ const YourMentee = () => {
             {mentees.map((mentee) => (
               <div key={mentee._id} className="bg-zinc-800 p-6 rounded-2xl text-center">
                 <h2 className="text-lg text-white font-semibold mb-2">{mentee.username}</h2>
-                <p className="text-blue-600 mb-4">{mentee.email}</p>
                 <button
                   onClick={() => handleRemoveMentee(mentee._id)}
                   className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"

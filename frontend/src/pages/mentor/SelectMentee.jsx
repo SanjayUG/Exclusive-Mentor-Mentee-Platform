@@ -83,7 +83,6 @@ const SelectMentee = () => {
                 className="bg-zinc-800 p-6 rounded-lg shadow-md flex flex-col items-center text-center"
               >
                 <h2 className="text-lg font-semibold mb-2">{mentee.username}</h2>
-                <p className="text-blue-500 mb-4">{mentee.email}</p>
                 <button
                   className="bg-yellow-500 text-black px-4 py-2 rounded-lg"
                   onClick={() => handleSelectMentee(mentee._id)}
