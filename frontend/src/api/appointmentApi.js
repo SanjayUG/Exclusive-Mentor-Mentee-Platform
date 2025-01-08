@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 const API_URL = `${import.meta.env.VITE_API_BASE_URL}/appointments`;
- // Base URL for appointments
 
 // Create a new appointment (either as mentee or mentor)
 export const submitAppointment = async (formData) => {

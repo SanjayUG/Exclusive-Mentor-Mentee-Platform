@@ -9,7 +9,7 @@ const Appointment = () => {
     time: '',
     reason: '',
     mentee: '',
-    mentor: '', // For mentee, populated automatically
+    mentor: '',
   });
   const [assignedMentees, setAssignedMentees] = useState([]);
   const [statusMessage, setStatusMessage] = useState('');
@@ -42,7 +42,7 @@ const Appointment = () => {
         })
         .catch((error) => {
           console.error('Error fetching mentees:', error);
-          setAssignedMentees([]); // Fallback to an empty array on error
+          setAssignedMentees([]);
         });
     } else if (userRole === 'mentee' && userId) {
       axios.get(`${import.meta.env.VITE_API_BASE_URL}/appointments/mentor`, {
@@ -60,12 +60,27 @@ const Appointment = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (userRole === 'mentor' && !formData.mentee) {
-        setStatusMessage('Please select a mentee.');
-        return;
+      if (userRole === 'mentor') {
+        if (!formData.mentee) {
+          setStatusMessage('Please select a mentee.');
+          return;
+        }
+        // Handle "Select All Mentees" logic
+        if (formData.mentee === 'all') {
+          const appointments = assignedMentees.map((mentee) => ({
+            ...formData,
+            mentee: mentee._id,
+          }));
+          await Promise.all(appointments.map((appointment) => submitAppointment(appointment)));
+          setStatusMessage('Appointments successfully submitted for all mentees!');
+        } else {
+          await submitAppointment(formData);
+          setStatusMessage('Appointment successfully submitted!');
+        }
+      } else {
+        await submitAppointment(formData);
+        setStatusMessage('Appointment successfully submitted!');
       }
-      await submitAppointment(formData);
-      setStatusMessage('Appointment successfully submitted!');
     } catch (error) {
       setStatusMessage(error.message);
     }
@@ -77,7 +92,7 @@ const Appointment = () => {
 
   return (
     <div className="p-6 max-w-md mx-auto translate-y-6 border-2 border-yellow-500 bg-zinc-700 rounded-3xl">
-      <h2 className="text-2xl text-white font-semibold mb-4">Schedule <span className='text-pink-500'>an</span> Appointment</h2>
+      <h2 className="text-2xl text-white font-semibold mb-4">Schedule <span className="text-pink-500">an</span> Appointment</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block text-white">Date</label>
@@ -122,6 +137,7 @@ const Appointment = () => {
               required
             >
               <option value="">Select a mentee</option>
+              <option value="all">All Mentees</option>
               {assignedMentees.map((mentee) => (
                 <option key={mentee._id} value={mentee._id}>
                   {mentee.username} ({mentee.email})
@@ -132,16 +148,16 @@ const Appointment = () => {
         )}
         <div className="flex justify-between items-center">
           <button
-            type="submit"
-            className="bg-purple-500 text-black hover:text-white px-4 py-2 rounded-lg hover:bg-purple-600"
-          >
-            Submit
-          </button>
-          <button
             onClick={handleViewAppointments}
             className="bg-yellow-500 text-black hover:text-white px-4 py-2 rounded-lg hover:bg-yellow-600"
           >
             View Appointments
+          </button>
+          <button
+            type="submit"
+            className="bg-purple-500 text-black hover:text-white px-4 py-2 rounded-lg hover:bg-purple-600"
+          >
+            Submit
           </button>
         </div>
       </form>
