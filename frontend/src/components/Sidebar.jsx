@@ -10,6 +10,7 @@ import {
   FaSignOutAlt,
   FaUsers,
   FaHome,
+  FaCode,
 } from "react-icons/fa";
 
 const Sidebar = ({ role }) => {
@@ -90,6 +91,17 @@ const Sidebar = ({ role }) => {
             </Link>
           </li>
 
+          {/* Code Up */}
+          <li>
+            <Link
+              to={`/${role}/codeup`}
+              className="flex items-center text-white p-2 rounded-lg hover:bg-indigo-600 transition"
+            >
+              <FaCode className="text-xl mr-3" />
+              <span>CODE_UP</span>
+            </Link>
+          </li>
+          
           {/* Feedback */}
           <li>
             <Link
@@ -100,6 +112,7 @@ const Sidebar = ({ role }) => {
               <span>Feedback</span>
             </Link>
           </li>
+
         </ul>
       </div>
 

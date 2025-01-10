@@ -8,6 +8,7 @@ import MenteeDashboard from "./pages/mentee/MenteeDashboard";
 import MenteeAppointment from "./pages/mentee/MenteeAppointment";
 import Achievement from "./pages/mentee/Achievement";
 import Feedback from "./pages/mentee/Feedback";
+import MenteeCodeUp from "./pages/mentee/MenteeCodeUp"; // Add this import
 
 import MentorDashboard from "./pages/mentor/MentorDashboard";
 import YourMentee from "./pages/mentor/YourMentee";
@@ -17,6 +18,8 @@ import MenteesAchievement from "./pages/mentor/MenteesAchievement";
 import ViewFeedback from "./pages/mentor/ViewFeedback";
 import ViewAppointment from "./components/Appointments/ViewAppointment";
 import ViewAchievements from "./components/Achievements/ViewAchievements";
+import MentorCodeUp from "./pages/mentor/MentorCodeUp"; // Add this import
+import CodeUpRoom from "./components/CodeUpRoom/CodeUpRoom.jsx";
 
 const App = () => {
   return (
@@ -91,6 +94,15 @@ const App = () => {
           }
         />
 
+        <Route
+          path="/mentor/codeup"
+          element={
+            <PrivateRoute role="mentor">
+              <MentorCodeUp />
+            </PrivateRoute>
+          }
+        />
+
         {/* ------------------- Mentee Routes ------------------- */}
         <Route
           path="/mentee/dashboard"
@@ -146,12 +158,26 @@ const App = () => {
           }
         />
 
+        <Route
+          path="/mentee/codeup"
+          element={
+            <PrivateRoute role="mentee">
+              <MenteeCodeUp />
+            </PrivateRoute>
+          }
+        />
+
         {/* ---------------- Default Route ---------------- */}
         <Route
           path="*"
           element={
             <div className="text-center mt-10">HARE KRISHNA (frontend)</div>
           }
+        />
+
+        {/* ---------------- testing Route ---------------- */}
+        <Route path="/testing" 
+          element={<CodeUpRoom />} 
         />
       </Routes>
     </div>
