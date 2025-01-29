@@ -5,7 +5,6 @@ import s1 from "../../assets/images/s1.jpeg";
 import s2 from "../../assets/images/s2.jpeg";
 import s3 from "../../assets/images/s3.jpeg";
 import s4 from "../../assets/images/s4.webp";
-import Animation2 from "../animations/Animation2";
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -76,13 +75,15 @@ const Login = () => {
         className="w-[900px] border-2 bg-zinc-800 border-purple-500 h-full relative overflow-hidden flex flex-col rounded-3xl"
         id="loginBg"
       >
+        <h1 className="text-3xl font-bold text-center mt-6 mb-6 text-purple-500">
+          Welcome to <span className="text-white">MentorLink</span>
+        </h1>
+
         <form
           className="ml-[30px] p-6 rounded w-full max-w-md"
           onSubmit={handleSubmit}
         >
-          <div className="translate-x-[-50%]">
-            <Animation2 />
-          </div>
+          <h2 className="text-2xl font-semibold text-center mb-4">Login</h2>
 
           {/* Show error/success message */}
           {message && (

@@ -5,22 +5,23 @@ import s1 from "../../assets/images/s1.jpeg";
 import s2 from "../../assets/images/s2.jpeg";
 import s3 from "../../assets/images/s3.jpeg";
 import s4 from "../../assets/images/s4.webp";
-import Animation1 from "../animations/Animation1";
 
 const Register = () => {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
-    confirmPassword: "", // New state for confirm password
-    role: "mentee", // Default to mentee
+    confirmPassword: "", // Confirm password field
+    role: "mentee", // Default role
   });
-  const [message, setMessage] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState(""); // Feedback message
+  const [isLoading, setIsLoading] = useState(false); // Loader state
+  const [currentIndex, setCurrentIndex] = useState(0); // Carousel index
 
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate();
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:3001";
 
-  // Handle input change
+  // Handle input change for all form fields
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -32,6 +33,7 @@ const Register = () => {
     setIsLoading(true);
     setMessage("");
 
+    // Validate passwords match
     if (formData.password !== formData.confirmPassword) {
       setMessage("Passwords do not match");
       setIsLoading(false);
@@ -39,12 +41,13 @@ const Register = () => {
     }
 
     try {
-      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/auth/register`, formData);
+      // Send POST request to register API
+      const response = await axios.post(`${API_BASE_URL}/auth/register`, formData);
       setMessage(response.data.message);
 
-      // Redirect to login page if registration is successful
+      // Redirect to login page on success
       if (response.data.success) {
-        setTimeout(() => navigate("/login"), 1000); // Redirect after 1 second
+        setTimeout(() => navigate("/login"), 1000);
       }
     } catch (error) {
       setMessage(error.response?.data?.message || "Registration failed");
@@ -53,29 +56,27 @@ const Register = () => {
     }
   };
 
-  // Carousel functionality
+  // Carousel auto-slide effect
   const images = [s1, s2, s3, s4];
-  const [currentIndex, setCurrentIndex] = useState(0);
-
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000); // Change image every 3 seconds
+    }, 3000);
     return () => clearInterval(interval);
   }, [images.length]);
 
   return (
     <div className="min-h-screen bg-zinc-700 text-white flex flex-col items-center justify-center">
       <div className="w-[900px] border-2 bg-zinc-800 border-purple-500 h-full relative overflow-hidden flex flex-col rounded-3xl">
+        <h1 className="text-4xl font-bold mb-6 text-center text-purple-500">
+          Welcome to <span className="text-white">MentorLink</span>
+        </h1>
+
         <form
           className="ml-[30px] border-none p-6 rounded w-full max-w-md"
           onSubmit={handleSubmit}
         >
-          <div className="translate-x-[-50%]">
-            <Animation1 />
-          </div>
-
-          {/* Success/Error Message */}
+          {/* Feedback Message */}
           {message && (
             <p
               className={`mb-4 text-center ${
@@ -88,12 +89,11 @@ const Register = () => {
             </p>
           )}
 
+          <h2 className="text-xl font-semibold text-center mb-4">Register / Sign Up</h2>
+
           {/* Username Field */}
           <div className="mb-4">
-            <label
-              htmlFor="username"
-              className="block text-sm font-medium text-white"
-            >
+            <label htmlFor="username" className="block text-sm font-medium">
               Username
             </label>
             <input
@@ -110,10 +110,7 @@ const Register = () => {
 
           {/* Email Field */}
           <div className="mb-4">
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-white"
-            >
+            <label htmlFor="email" className="block text-sm font-medium">
               Email
             </label>
             <input
@@ -130,10 +127,7 @@ const Register = () => {
 
           {/* Password Field */}
           <div className="mb-4">
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-white"
-            >
+            <label htmlFor="password" className="block text-sm font-medium">
               Password
             </label>
             <input
@@ -150,10 +144,7 @@ const Register = () => {
 
           {/* Confirm Password Field */}
           <div className="mb-4">
-            <label
-              htmlFor="confirmPassword"
-              className="block text-sm font-medium text-white"
-            >
+            <label htmlFor="confirmPassword" className="block text-sm font-medium">
               Confirm Password
             </label>
             <input
@@ -170,10 +161,7 @@ const Register = () => {
 
           {/* Role Selection */}
           <div className="mb-4">
-            <label
-              htmlFor="role"
-              className="block text-sm font-medium text-white"
-            >
+            <label htmlFor="role" className="block text-sm font-medium">
               Role
             </label>
             <select
@@ -198,6 +186,7 @@ const Register = () => {
           </button>
         </form>
 
+        {/* Carousel Section */}
         <div className="absolute w-[450px] flex justify-center items-center h-full right-0">
           <div className="w-[400px] rounded-3xl h-[400px] overflow-hidden relative">
             <div
@@ -217,7 +206,7 @@ const Register = () => {
         </div>
 
         {/* Link to Login Page */}
-        <p className="mt-2 z-10 mb-[20px] text-center">
+        <p className="mt-4 z-10 mb-[20px] text-center">
           Already have an account?{" "}
           <Link
             to="/login"

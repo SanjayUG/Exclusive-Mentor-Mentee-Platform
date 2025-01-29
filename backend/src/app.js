@@ -8,7 +8,7 @@ import appointmentsRoutes from "./routes/appointmentsRoutes.js";
 import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
-import './utils/reminderScheduler.js'; // Import the reminder scheduler
+import './utils/reminderScheduler.js';
 
 const app = express();
 
