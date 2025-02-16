@@ -23,7 +23,6 @@ npm run dev
 ```
 
 ---
-
 ## Features
 - **React** for building UI components
 - **Vite** for fast development and build
@@ -113,6 +112,3 @@ npm run preview
 - **React Toastify**: Elegant toast notifications
 
 ---
-
-## License
-This project is licensed under the MIT License.
