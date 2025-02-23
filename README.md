@@ -5,6 +5,13 @@
 You can view the live demo of the platform at [Exclusive Mentor-Mentee Platform](https://mentorlink-three.vercel.app/).
 
 ---
+
+## 📌 API Documentation (Postman)
+- The API has been tested using **Postman**.
+- You can import the Postman collection using the provided JSON file: [MentorMentee2.postman_collection.json](backend/MentorMentee2.postman_collection.json).
+- Open Postman, go to **File > Import**, and select the JSON file to load the API endpoints.
+
+---
 ## Key concepts and principles
 ### 1. DRY (Don't Repeat Yourself)
 - Avoid duplicating code by abstracting common functionality into reusable components, functions, or modules.
