@@ -66,129 +66,143 @@ const Register = () => {
   }, [images.length]);
 
   return (
-    <div className="min-h-screen bg-zinc-700 text-white flex flex-col items-center justify-center">
-      <div className="w-[900px] border-2 bg-zinc-800 border-purple-500 h-full relative overflow-hidden flex flex-col rounded-3xl">
-        <h1 className="text-4xl font-bold mb-6 text-center text-purple-500">
-          Welcome to <span className="text-white">MentorLink</span>
-        </h1>
+    <div className="min-h-screen bg-zinc-700 text-white flex flex-col items-center justify-center p-4">
+      <div className="w-full max-w-[900px] border-2 bg-zinc-800 border-purple-500 relative overflow-hidden flex flex-col md:flex-row rounded-3xl">
+        {/* Form Section */}
+        <div className="w-full md:w-1/2 p-6">
+          <h1 className="text-2xl md:text-4xl font-bold mb-6 text-center text-purple-500">
+            Welcome to <span className="text-white">MentorLink</span>
+          </h1>
 
-        <form
-          className="ml-[30px] border-none p-6 rounded w-full max-w-md"
-          onSubmit={handleSubmit}
-        >
-          {/* Feedback Message */}
-          {message && (
-            <p
-              className={`mb-4 text-center ${
-                message.toLowerCase().includes("success")
-                  ? "text-green-500"
-                  : "text-red-500"
-              }`}
-            >
-              {message}
-            </p>
-          )}
-
-          <h2 className="text-xl font-semibold text-center mb-4">Register / Sign Up</h2>
-
-          {/* Username Field */}
-          <div className="mb-4">
-            <label htmlFor="username" className="block text-sm font-medium">
-              Username
-            </label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              value={formData.username}
-              onChange={handleChange}
-              className="w-full px-3 bg-zinc-700 text-white py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-[#ff01ea]"
-              placeholder="Enter your username"
-              required
-            />
-          </div>
-
-          {/* Email Field */}
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className="w-full px-3 py-2 bg-zinc-700 text-white rounded-lg border focus:outline-none focus:ring-2 focus:ring-[#ff01ea]"
-              placeholder="Enter your email"
-              required
-            />
-          </div>
-
-          {/* Password Field */}
-          <div className="mb-4">
-            <label htmlFor="password" className="block text-sm font-medium">
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border bg-zinc-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff01ea]"
-              placeholder="Enter your password"
-              required
-            />
-          </div>
-
-          {/* Confirm Password Field */}
-          <div className="mb-4">
-            <label htmlFor="confirmPassword" className="block text-sm font-medium">
-              Confirm Password
-            </label>
-            <input
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border bg-zinc-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff01ea]"
-              placeholder="Confirm your password"
-              required
-            />
-          </div>
-
-          {/* Role Selection */}
-          <div className="mb-4">
-            <label htmlFor="role" className="block text-sm font-medium">
-              Role
-            </label>
-            <select
-              id="role"
-              name="role"
-              value={formData.role}
-              onChange={handleChange}
-              className="w-full rounded-lg px-3 bg-zinc-700 text-white py-2 border focus:outline-none focus:ring-2 focus:ring-[#ff01ea]"
-            >
-              <option value="mentee">Mentee</option>
-              <option value="mentor">Mentor</option>
-            </select>
-          </div>
-
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="w-full rounded-2xl bg-purple-500 hover:text-white py-2 text-black hover:bg-purple-600 transition duration-200 focus:outline-none"
-            disabled={isLoading}
+          <form
+            className="w-full max-w-md mx-auto"
+            onSubmit={handleSubmit}
           >
-            {isLoading ? "Registering..." : "Register"}
-          </button>
-        </form>
+            {/* Feedback Message */}
+            {message && (
+              <p
+                className={`mb-4 text-center ${
+                  message.toLowerCase().includes("success")
+                    ? "text-green-500"
+                    : "text-red-500"
+                }`}
+              >
+                {message}
+              </p>
+            )}
+
+            <h2 className="text-xl md:text-2xl font-semibold text-center mb-4">Register / Sign Up</h2>
+
+            {/* Username Field */}
+            <div className="mb-4">
+              <label htmlFor="username" className="block text-sm font-medium">
+                Username
+              </label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                value={formData.username}
+                onChange={handleChange}
+                className="w-full px-3 bg-zinc-700 text-white py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-[#ff01ea]"
+                placeholder="Enter your username"
+                required
+              />
+            </div>
+
+            {/* Email Field */}
+            <div className="mb-4">
+              <label htmlFor="email" className="block text-sm font-medium">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full px-3 py-2 bg-zinc-700 text-white rounded-lg border focus:outline-none focus:ring-2 focus:ring-[#ff01ea]"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+
+            {/* Password Field */}
+            <div className="mb-4">
+              <label htmlFor="password" className="block text-sm font-medium">
+                Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border bg-zinc-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff01ea]"
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+
+            {/* Confirm Password Field */}
+            <div className="mb-4">
+              <label htmlFor="confirmPassword" className="block text-sm font-medium">
+                Confirm Password
+              </label>
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border bg-zinc-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff01ea]"
+                placeholder="Confirm your password"
+                required
+              />
+            </div>
+
+            {/* Role Selection */}
+            <div className="mb-4">
+              <label htmlFor="role" className="block text-sm font-medium">
+                Role
+              </label>
+              <select
+                id="role"
+                name="role"
+                value={formData.role}
+                onChange={handleChange}
+                className="w-full rounded-lg px-3 bg-zinc-700 text-white py-2 border focus:outline-none focus:ring-2 focus:ring-[#ff01ea]"
+              >
+                <option value="mentee">Mentee</option>
+                <option value="mentor">Mentor</option>
+              </select>
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              className="w-full rounded-2xl bg-purple-500 hover:text-white py-2 text-black hover:bg-purple-600 transition duration-200 focus:outline-none"
+              disabled={isLoading}
+            >
+              {isLoading ? "Registering..." : "Register"}
+            </button>
+
+            {/* Link to Login Page */}
+            <p className="mt-4 text-center">
+              Already have an account?{" "}
+              <Link
+                to="/login"
+                className="text-blue-500 hover:text-red-500 hover:underline"
+              >
+                Login here
+              </Link>
+            </p>
+          </form>
+        </div>
 
         {/* Carousel Section */}
-        <div className="absolute w-[450px] flex justify-center items-center h-full right-0">
-          <div className="w-[400px] rounded-3xl h-[400px] overflow-hidden relative">
+        <div className="hidden md:flex w-1/2 items-center justify-center p-6">
+          <div className="w-full max-w-[400px] rounded-3xl h-[400px] overflow-hidden relative">
             <div
               className="flex w-full h-full transition-transform duration-500"
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -198,23 +212,12 @@ const Register = () => {
                   key={index}
                   src={src}
                   alt={`Slide ${index}`}
-                  className="w-[400px] h-[400px] object-cover"
+                  className="w-full h-full object-cover rounded-3xl"
                 />
               ))}
             </div>
           </div>
         </div>
-
-        {/* Link to Login Page */}
-        <p className="mt-4 z-10 mb-[20px] text-center">
-          Already have an account?{" "}
-          <Link
-            to="/login"
-            className="text-blue-500 hover:text-red-500 hover:underline"
-          >
-            Login here
-          </Link>
-        </p>
       </div>
     </div>
   );

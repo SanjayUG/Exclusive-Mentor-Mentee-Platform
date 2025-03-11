@@ -29,22 +29,22 @@ const FeedbackForm = ({ submitFeedback }) => {
   };
 
   return (
-    <div className="max-w-lg mx-auto border-2 border-yellow-500 p-6 translate-y-1/3 bg-zinc-800 rounded-3xl">
-      <h2 className="text-2xl font-bold mb-4">Your Feedback</h2>
-      {feedbackSubmitted && (
-        <div className="bg-green-100 text-green-700 p-4 mb-4 rounded-md">
-          Feedback submitted successfully!
+    <div className="w-full max-w-2xl mx-auto mt-8 p-4">
+      <form className="space-y-4 bg-zinc-800 p-4 md:p-6 rounded-xl shadow-lg">
+        <div>
+          <label htmlFor="feedback" className="block text-sm md:text-base font-medium text-white mb-2">
+            Your Feedback
+          </label>
+          <textarea
+            id="feedback"
+            value={feedbackText}
+            onChange={(e) => setFeedbackText(e.target.value)}
+            className="w-full px-3 py-2 bg-zinc-700 text-white rounded-lg border border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            rows="4"
+            placeholder="Share your thoughts about your mentor..."
+            required
+          />
         </div>
-      )}
-
-      <form onSubmit={handleSubmit}>
-        <textarea
-          className="w-full border bg-zinc-700 border-purple-500 rounded-md p-3 mb-4 focus:outline-none"
-          rows="5"
-          placeholder="Write your feedback here..."
-          value={feedbackText}
-          onChange={(e) => setFeedbackText(e.target.value)}
-        ></textarea>
 
         <button
           type="submit"

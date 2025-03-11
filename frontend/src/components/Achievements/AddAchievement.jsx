@@ -32,15 +32,16 @@ const AddAchievement = () => {
   };
 
   return (
-    <div className="flex justify-center items-start h-screen bg-gray-900 pt-12"> {/* Added pt-12 to add space from the top */}
-      <div className="p-6 rounded-3xl border-2 border-yellow-500 bg-zinc-800 w-[600px]">
-        <h1 className="text-2xl font-bold text-center mb-4 text-white">Add Achievement</h1>
-        <div className="max-w-lg mx-auto">
+    <div className="flex justify-center items-start min-h-screen bg-gray-900 p-4">
+      <div className="w-full max-w-[600px] p-4 md:p-6 rounded-3xl border-2 border-yellow-500 bg-zinc-800">
+        <h1 className="text-xl md:text-2xl font-bold text-center mb-4 text-white">Add Achievement</h1>
+        <div className="w-full">
           <textarea
             value={achievementInput}
             onChange={(e) => setAchievementInput(e.target.value)}
             placeholder="Write your achievement..."
             className="w-full p-3 border bg-zinc-600 border-purple-500 rounded-md mb-4 focus:outline-none text-white"
+            rows="4"
           />
           <input
             type="file"
@@ -54,7 +55,7 @@ const AddAchievement = () => {
           >
             {loading ? "Submitting..." : "Submit Achievement"}
           </button>
-          {error && <p className="text-red-500 text-center">{error}</p>}
+          {error && <p className="text-red-500 text-center mb-4">{error}</p>}
           <button
             onClick={handleViewAchievements}
             className="w-full bg-purple-700 text-black hover:text-white py-2 px-4 rounded-xl hover:bg-purple-800 transition duration-200"

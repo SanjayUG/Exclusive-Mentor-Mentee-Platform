@@ -70,105 +70,120 @@ const Login = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-zinc-700 text-white flex flex-col items-center justify-center">
+    <div className="min-h-screen bg-zinc-700 text-white flex flex-col items-center justify-center p-4">
       <div
-        className="w-[900px] border-2 bg-zinc-800 border-purple-500 h-full relative overflow-hidden flex flex-col rounded-3xl"
+        className="w-full max-w-[900px] border-2 bg-zinc-800 border-purple-500 relative overflow-hidden flex flex-col md:flex-row rounded-3xl"
         id="loginBg"
       >
-        <h1 className="text-3xl font-bold text-center mt-6 mb-6 text-purple-500">
-          Welcome to <span className="text-white">MentorLink</span>
-        </h1>
+        {/* Form Section */}
+        <div className="w-full md:w-1/2 p-6">
+          <h1 className="text-2xl md:text-3xl font-bold text-center mb-6 text-purple-500">
+            Welcome to <span className="text-white">MentorLink</span>
+          </h1>
 
-        <form
-          className="ml-[30px] p-6 rounded w-full max-w-md"
-          onSubmit={handleSubmit}
-        >
-          <h2 className="text-2xl font-semibold text-center mb-4">Login</h2>
-
-          {/* Show error/success message */}
-          {message && (
-            <p
-              className={`mb-4 ${
-                message.includes("successful")
-                  ? "text-green-500"
-                  : "text-red-500"
-              }`}
-            >
-              {message}
-            </p>
-          )}
-
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Enter your email"
-              className="w-full px-3 mb-[15px] bg-zinc-700 text-white py-2 border rounded-lg focus:ring focus:ring-[#ff01ea]"
-              required
-            />
-          </div>
-
-          <div className="mb-4">
-            <label htmlFor="password" className="block text-sm font-medium">
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="Enter your password"
-              className="w-full px-3 py-2 border mb-[15px] bg-zinc-700 text-white rounded-lg focus:ring focus:ring-[#ff01ea]"
-              required
-            />
-          </div>
-
-          <div className="mb-4 flex items-center justify-between">
-            <span>Role:</span>
-            <div>
-              <button
-                type="button"
-                onClick={() => setUserRole("mentee")}
-                className={`px-3 py-1 ${
-                  userRole === "mentee"
-                    ? "bg-[#27deeb] text-black"
-                    : "bg-gray-200 text-zinc-500"
-                } rounded-full`}
-              >
-                Mentee
-              </button>
-              <button
-                type="button"
-                onClick={() => setUserRole("mentor")}
-                className={`px-3 py-1 ml-2 ${
-                  userRole === "mentor"
-                    ? "bg-[#c01db5] text-black"
-                    : "bg-gray-200 text-zinc-500"
-                } rounded-full`}
-              >
-                Mentor
-              </button>
-            </div>
-          </div>
-
-          <button
-            type="submit"
-            className="w-full mt-[15px] bg-purple-500 text-black hover:text-white py-2 rounded-2xl hover:bg-purple-600 disabled:opacity-50"
-            disabled={isLoading} // Disable button while loading
+          <form
+            className="w-full max-w-md mx-auto"
+            onSubmit={handleSubmit}
           >
-            {isLoading ? "Logging in..." : "Login"}
-          </button>
-        </form>
+            <h2 className="text-xl md:text-2xl font-semibold text-center mb-4">Login</h2>
 
-        <div className="absolute w-[450px] flex justify-center items-center h-full right-0">
-          <div className="w-[360px] rounded-3xl h-[360px] overflow-hidden relative">
+            {/* Show error/success message */}
+            {message && (
+              <p
+                className={`mb-4 ${
+                  message.includes("successful")
+                    ? "text-green-500"
+                    : "text-red-500"
+                }`}
+              >
+                {message}
+              </p>
+            )}
+
+            <div className="mb-4">
+              <label htmlFor="email" className="block text-sm font-medium">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Enter your email"
+                className="w-full px-3 mb-[15px] bg-zinc-700 text-white py-2 border rounded-lg focus:ring focus:ring-[#ff01ea]"
+                required
+              />
+            </div>
+
+            <div className="mb-4">
+              <label htmlFor="password" className="block text-sm font-medium">
+                Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="Enter your password"
+                className="w-full px-3 py-2 border mb-[15px] bg-zinc-700 text-white rounded-lg focus:ring focus:ring-[#ff01ea]"
+                required
+              />
+            </div>
+
+            <div className="mb-4 flex items-center justify-between">
+              <span>Role:</span>
+              <div>
+                <button
+                  type="button"
+                  onClick={() => setUserRole("mentee")}
+                  className={`px-3 py-1 ${
+                    userRole === "mentee"
+                      ? "bg-[#27deeb] text-black"
+                      : "bg-gray-200 text-zinc-500"
+                  } rounded-full`}
+                >
+                  Mentee
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setUserRole("mentor")}
+                  className={`px-3 py-1 ml-2 ${
+                    userRole === "mentor"
+                      ? "bg-[#c01db5] text-black"
+                      : "bg-gray-200 text-zinc-500"
+                  } rounded-full`}
+                >
+                  Mentor
+                </button>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              className="w-full mt-[15px] bg-purple-500 text-black hover:text-white py-2 rounded-2xl hover:bg-purple-600 disabled:opacity-50"
+              disabled={isLoading}
+            >
+              {isLoading ? "Logging in..." : "Login"}
+            </button>
+
+            {/* Link to Register Page */}
+            <p className="mt-4 text-center">
+              Don't have an account?{" "}
+              <Link
+                to="/register"
+                className="text-blue-500 hover:text-red-500 hover:underline"
+              >
+                Register here
+              </Link>
+            </p>
+          </form>
+        </div>
+
+        {/* Carousel Section */}
+        <div className="hidden md:flex w-1/2 items-center justify-center p-6">
+          <div className="w-full max-w-[400px] rounded-3xl h-[400px] overflow-hidden relative">
             <div
               className="flex w-full h-full transition-transform duration-500"
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -178,23 +193,12 @@ const Login = () => {
                   key={index}
                   src={src}
                   alt={`Slide ${index}`}
-                  className="w-[400px] h-[400px] object-cover"
+                  className="w-full h-full object-cover rounded-3xl"
                 />
               ))}
             </div>
           </div>
         </div>
-
-        {/* Link to Register Page */}
-        <p className="mt-4 z-10 text-center mb-[30px]">
-          Don’t have an account?{" "}
-          <Link
-            to="/register"
-            className="text-blue-500 hover:text-red-500 hover:underline"
-          >
-            Register here
-          </Link>
-        </p>
       </div>
     </div>
   );

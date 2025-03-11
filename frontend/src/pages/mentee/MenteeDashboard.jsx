@@ -36,33 +36,38 @@ const MenteeDashboard = () => {
   };
 
   return (
-    <div className="flex h-screen">
-      <Sidebar role="mentee" />
-      <div className="flex-1 p-8 text-white bg-black border-l-4 border-purple-700 rounded-l-[50px] overflow-y-auto">
-        <h1 className="text-3xl font2 font-bold mb-4">Welcome, <span className='text-pink-400'>Mentee!</span></h1>
-        <div className="p-6 rounded-3xl shadow-md mb-6 bg-black">
-          <h2 className="text-2xl font2 font-semibold mb-4">Upcoming Appointments</h2>
+    <div className="flex flex-col md:flex-row min-h-screen">
+      <div className="w-full md:w-auto">
+        <Sidebar role="mentee" />
+      </div>
+      <div className="flex-1 p-4 md:p-8 text-white bg-black border-t-4 md:border-t-0 md:border-l-4 border-purple-700 md:rounded-l-[50px] overflow-y-auto">
+      <h1 className="text-2xl md:text-3xl font2 font-bold mb-4">............Good Things Come from Good Things</h1>
+        <h1 className="text-2xl md:text-3xl font2 font-bold mb-4">Welcome, <span className='text-pink-400'>Mentee!</span></h1>
+        <div className="p-4 md:p-6 rounded-3xl shadow-md mb-6 bg-black">
+          <h2 className="text-xl md:text-2xl font2 font-semibold mb-4">Upcoming Appointments</h2>
           {appointments.length === 0 ? (
             <p className="text-blue-700">No upcoming appointments available.</p>
           ) : (
             <ul className="space-y-4">
               {appointments.map((appointment) => (
                 <li key={appointment._id} className="p-4 bg-zinc-700 rounded-3xl border border-yellow-500">
-                  <p><strong>Date:</strong> {new Date(appointment.date).toLocaleDateString()}</p>
-                  <p><strong>Time:</strong> {appointment.time}</p>
-                  <p><strong>Reason:</strong> {appointment.reason}</p>
-                  <p><strong>Status:</strong> {appointment.status}</p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                    <p><strong>Date:</strong> {new Date(appointment.date).toLocaleDateString()}</p>
+                    <p><strong>Time:</strong> {appointment.time}</p>
+                    <p><strong>Reason:</strong> {appointment.reason}</p>
+                    <p><strong>Status:</strong> {appointment.status}</p>
+                  </div>
                   {appointment.status === 'Pending' && (
-                    <div className="space-x-4 mt-2">
+                    <div className="flex flex-col md:flex-row gap-2 mt-2">
                       <button
                         onClick={() => handleAction(appointment._id, 'Accepted')}
-                        className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
+                        className="w-full md:w-auto bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
                       >
                         Accept
                       </button>
                       <button
                         onClick={() => handleAction(appointment._id, 'Rejected')}
-                        className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
+                        className="w-full md:w-auto bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
                       >
                         Reject
                       </button>
