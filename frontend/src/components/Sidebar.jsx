@@ -133,11 +133,10 @@ const Sidebar = ({ role }) => {
         {/* Logout Button */}
         <button
           onClick={handleLogout}
-          className="flex items-center w-full p-2 text-white bg-red-600 rounded-lg hover:bg-red-700 transition"
+          className="flex items-center w-full p-3 text-white bg-red-600 rounded-lg hover:bg-red-700 transition mt-auto sticky bottom-4"
         >
-          <img src={logout} alt="Logout" className="w-12 h-12 mr-3" />
           <FaSignOutAlt className="text-xl mr-3" />
-          <span>Logout</span>
+          <span className="text-base font-medium">Logout</span>
         </button>
       </div>
 
